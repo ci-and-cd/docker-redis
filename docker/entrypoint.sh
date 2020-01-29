@@ -4,7 +4,6 @@ set -e
 #echo "/entrypoint.sh"
 #cat /entrypoint.sh
 
-sed -i "s/<SENTINEL_CAN_FAILOVER>/${SENTINEL_CAN_FAILOVER:-yes}/g"  /etc/redis/sentinel.conf
 sed -i "s/<SENTINEL_DOWN_AFTER>/${SENTINEL_DOWN_AFTER:-30000}/g" /etc/redis/sentinel.conf
 sed -i "s/<SENTINEL_FAILOVER_TIMEOUT>/${SENTINEL_FAILOVER_TIMEOUT:-180000}/g" /etc/redis/sentinel.conf
 sed -i "s/<SENTINEL_MASTER_HOSTORIP>/${SENTINEL_MASTER_HOSTORIP:-redis-master}/g" /etc/redis/sentinel.conf

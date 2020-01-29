@@ -30,7 +30,6 @@ services:
     command: ["redis-server", "/etc/redis/sentinel.conf", "--sentinel"]
     container_name: ${CONTAINER_HOST_NAME:-redis-sentinel}
     environment:
-    - SENTINEL_CAN_FAILOVER=yes
     - SENTINEL_DOWN_AFTER=30000
     - SENTINEL_FAILOVER_TIMEOUT=180000
     #- SENTINEL_MASTER_HOSTORIP=redis-master
