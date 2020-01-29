@@ -7,9 +7,9 @@ services:
       dockerfile: Dockerfile
       args:
       - IMAGE_ARG_ALPINE_MIRROR=${IMAGE_ARG_ALPINE_MIRROR:-mirror.tuna.tsinghua.edu.cn}
-      - IMAGE_ARG_IMAGE_TAG=${IMAGE_ARG_IMAGE_TAG:-3.0.6}
-      - IMAGE_ARG_VERSION=${IMAGE_ARG_VERSION:-3.0.6}
-    image: ${IMAGE_PREFIX:-cloudready/}${IMAGE_NAME:-redis}:${IMAGE_TAG:-3.0.6-SNAPSHOT}
+      - IMAGE_ARG_IMAGE_TAG=${IMAGE_ARG_IMAGE_TAG:-5.0.7}
+      - IMAGE_ARG_VERSION=${IMAGE_ARG_VERSION:-5.0.7}
+    image: ${IMAGE_PREFIX:-cloudready/}${IMAGE_NAME:-redis}:${IMAGE_TAG:-5.0.7-SNAPSHOT}
     labels:
       deploy.config.commit: ${LABEL_DEPLOY_CONFIG_COMMIT:-unknown}
       deploy.config.name: ${LABEL_DEPLOY_CONFIG_NAME:-unknown}

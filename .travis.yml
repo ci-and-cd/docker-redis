@@ -13,12 +13,9 @@ dist: trusty
 env:
 #  global:
   matrix:
-  - IMAGE_ARG_IMAGE_TAG=4.0.10
-  - IMAGE_ARG_IMAGE_TAG=4.0.10-alpine
-  - IMAGE_ARG_IMAGE_TAG=3.2.12
-  - IMAGE_ARG_IMAGE_TAG=3.2.12-alpine
-  - IMAGE_ARG_IMAGE_TAG=3.0.6
-  - IMAGE_ARG_IMAGE_TAG=3.0.6-alpine
+  - IMAGE_ARG_IMAGE_TAG=5.0.7
+  - IMAGE_ARG_IMAGE_TAG=5.0.7-alpine
+  - IMAGE_ARG_IMAGE_TAG=5.0.7-buster
 
 group: edge
 #install: true

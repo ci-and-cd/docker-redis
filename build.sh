@@ -11,7 +11,7 @@ if [ -n "${CI_OPT_DOCKER_REGISTRY_PASS}" ] && [ -n "${CI_OPT_DOCKER_REGISTRY_USE
 
 export IMAGE_PREFIX=${IMAGE_PREFIX:-cloudready/};
 export IMAGE_NAME=${IMAGE_NAME:-redis}
-export IMAGE_TAG=${IMAGE_ARG_IMAGE_TAG:-3.0.6}
+export IMAGE_TAG=${IMAGE_ARG_IMAGE_TAG:-5.0.7}
 if [ "${TRAVIS_BRANCH}" != "master" ]; then export IMAGE_TAG=${IMAGE_TAG}-SNAPSHOT; fi
 
 # Build image

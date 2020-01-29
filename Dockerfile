@@ -1,7 +1,7 @@
 
 ARG IMAGE_ARG_IMAGE_TAG
 
-FROM redis:${IMAGE_ARG_IMAGE_TAG:-3.0.6} as base
+FROM redis:${IMAGE_ARG_IMAGE_TAG:-5.0.7} as base
 
 
 
@@ -32,7 +32,7 @@ RUN set -ex \
   && groupmod -g 1000 redis \
   && chown -hR redis:redis /data
 
-ENV REDIS_VERSION ${IMAGE_ARG_VERSION:-3.0.6}
+ENV REDIS_VERSION ${IMAGE_ARG_VERSION:-5.0.7}
 VOLUME /data
 WORKDIR /data
 

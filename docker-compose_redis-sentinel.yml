@@ -9,7 +9,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379"]
+    command: ["redis-server", "--port", "6379", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
     container_name: ${CONTAINER_HOST_NAME:-redis-master}
     hostname: ${CONTAINER_HOST_NAME:-redis-master}
     network_mode: "host"
@@ -57,7 +57,7 @@ services:
       service: base-redis
     #command: ["redis-server", "--slaveof", "redis-master", "6379", "--port", "6381"]
     #command: ["redis-server", "--slaveof", "host.docker.internal", "6379", "--port", "6381"]
-    command: ["redis-server", "--slaveof", "127.0.0.1", "6379", "--port", "6381"]
+    command: ["redis-server", "--slaveof", "127.0.0.1", "6379", "--port", "6381", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
     container_name: ${CONTAINER_HOST_NAME:-redis-slave}
     hostname: ${CONTAINER_HOST_NAME:-redis-slave}
     network_mode: "host"
