@@ -30,13 +30,15 @@ services:
     command: ["redis-server", "/etc/redis/sentinel.conf", "--sentinel"]
     container_name: ${CONTAINER_HOST_NAME:-redis-sentinel}
     environment:
+    - SENTINEL_CAN_FAILOVER=yes
     - SENTINEL_DOWN_AFTER=30000
-    - SENTINEL_FAILOVER=180000
+    - SENTINEL_FAILOVER_TIMEOUT=180000
     #- SENTINEL_MASTER_HOSTORIP=redis-master
     #- SENTINEL_MASTER_HOSTORIP=host.docker.internal
     - SENTINEL_MASTER_HOSTORIP=127.0.0.1
     - SENTINEL_MASTER_NAME=mymaster
     - SENTINEL_MASTER_PORT=6379
+    - SENTINEL_PARALLEL_SYNCS=1
     - SENTINEL_PORT=26379
     - SENTINEL_QUORUM=2
     hostname: ${CONTAINER_HOST_NAME:-redis-sentinel}
