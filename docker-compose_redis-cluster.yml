@@ -1,6 +1,6 @@
 
 #docker inspect -f '{{ (index .NetworkSettings.Networks "local-network").IPAddress }}' redis-cluster-1
-#docker run -i --rm --net local-network redis sh -c 'redis-cli --cluster create 172.16.238.51:6379 172.16.238.52:6379 172.16.238.53:6379 172.16.238.54:6379 172.16.238.55:6379 172.16.238.56:6379 --cluster-replicas 1'
+#docker run -i --rm --net local-network redis sh -c 'redis-cli --cluster create 172.16.238.51:6379 172.16.238.52:6379 172.16.238.53:6379 172.16.238.54:6379 172.16.238.55:6379 172.16.238.56:6379 --cluster-replicas 1 -a redis_pass'
 
 version: '2.1'
 services:
@@ -8,7 +8,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.51", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: redis-server --port 6379 --requirepass ${REDIS_PASS} --cluster-enabled yes --cluster-announce-ip 172.16.238.51 --cluster-announce-bus-port 16379 --cluster-announce-port 6379 --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --masterauth ${REDIS_PASS} --min-slaves-to-write 1 --min-slaves-max-lag 10 --maxmemory 2gb --maxmemory-policy allkeys-lru
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-1}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-1}
     networks:
@@ -24,7 +24,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.52", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: redis-server --port 6379 --requirepass ${REDIS_PASS} --cluster-enabled yes --cluster-announce-ip 172.16.238.52 --cluster-announce-bus-port 16379 --cluster-announce-port 6379 --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --masterauth ${REDIS_PASS} --min-slaves-to-write 1 --min-slaves-max-lag 10 --maxmemory 2gb --maxmemory-policy allkeys-lru
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-2}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-2}
     networks:
@@ -38,7 +38,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.53", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: redis-server --port 6379 --requirepass ${REDIS_PASS} --cluster-enabled yes --cluster-announce-ip 172.16.238.53 --cluster-announce-bus-port 16379 --cluster-announce-port 6379 --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --masterauth ${REDIS_PASS} --min-slaves-to-write 1 --min-slaves-max-lag 10 --maxmemory 2gb --maxmemory-policy allkeys-lru
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-3}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-3}
     networks:
@@ -52,7 +52,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.54", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: redis-server --port 6379 --requirepass ${REDIS_PASS} --cluster-enabled yes --cluster-announce-ip 172.16.238.54 --cluster-announce-bus-port 16379 --cluster-announce-port 6379 --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --masterauth ${REDIS_PASS} --min-slaves-to-write 1 --min-slaves-max-lag 10 --maxmemory 2gb --maxmemory-policy allkeys-lru
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-4}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-4}
     networks:
@@ -66,7 +66,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.55", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: redis-server --port 6379 --requirepass ${REDIS_PASS} --cluster-enabled yes --cluster-announce-ip 172.16.238.55 --cluster-announce-bus-port 16379 --cluster-announce-port 6379 --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --masterauth ${REDIS_PASS} --min-slaves-to-write 1 --min-slaves-max-lag 10 --maxmemory 2gb --maxmemory-policy allkeys-lru
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-5}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-5}
     networks:
@@ -80,7 +80,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.56", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: redis-server --port 6379 --requirepass ${REDIS_PASS} --cluster-enabled yes --cluster-announce-ip 172.16.238.56 --cluster-announce-bus-port 16379 --cluster-announce-port 6379 --cluster-config-file nodes.conf --cluster-node-timeout 5000 --appendonly yes --masterauth ${REDIS_PASS} --min-slaves-to-write 1 --min-slaves-max-lag 10 --maxmemory 2gb --maxmemory-policy allkeys-lru
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-6}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-6}
     networks:

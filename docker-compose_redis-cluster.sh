@@ -1,4 +1,6 @@
 
+export REDIS_PASS="redis_pass"
+
 docker-compose -f docker-compose_redis-cluster.yml down -v
 
 read -p "Do you want clear data: " -n 1 -r
