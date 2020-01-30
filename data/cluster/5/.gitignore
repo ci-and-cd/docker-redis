@@ -1,5 +1,5 @@
 # Ignore everything
-*
+dump.rdb
 
 # But not these files...
 !/.gitignore

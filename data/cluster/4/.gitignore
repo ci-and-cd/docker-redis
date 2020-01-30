@@ -1,5 +1,5 @@
 # Ignore everything
-*
+nodes.conf
 
 # But not these files...
 !/.gitignore

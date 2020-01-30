@@ -8,7 +8,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.51", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-1}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-1}
     networks:
@@ -24,7 +24,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.52", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-2}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-2}
     networks:
@@ -38,7 +38,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.53", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-3}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-3}
     networks:
@@ -52,7 +52,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.54", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-4}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-4}
     networks:
@@ -66,7 +66,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.55", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-5}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-5}
     networks:
@@ -80,7 +80,7 @@ services:
     extends:
       file: docker-compose-base.yml
       service: base-redis
-    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
+    command: ["redis-server", "--port", "6379", "--cluster-enabled", "yes", "--cluster-announce-ip", "172.16.238.56", "--cluster-announce-bus-port", "16379", "--cluster-announce-port", "6379", "--cluster-config-file", "nodes.conf", "--cluster-node-timeout", "5000", "--appendonly", "yes", "--min-slaves-to-write", "1", "--min-slaves-max-lag", "10", "--maxmemory", "2gb", "--maxmemory-policy", "allkeys-lru"]
     container_name: ${CONTAINER_HOST_NAME:-redis-cluster-6}
     hostname: ${CONTAINER_HOST_NAME:-redis-cluster-6}
     networks:
@@ -108,35 +108,35 @@ volumes:
     driver: local
     driver_opts:
       type: none
-      device: ${PWD}/data/1
+      device: ${PWD}/data/cluster/1
       o: bind
   data-2:
     driver: local
     driver_opts:
       type: none
-      device: ${PWD}/data/2
+      device: ${PWD}/data/cluster/2
       o: bind
   data-3:
     driver: local
     driver_opts:
       type: none
-      device: ${PWD}/data/3
+      device: ${PWD}/data/cluster/3
       o: bind
   data-4:
     driver: local
     driver_opts:
       type: none
-      device: ${PWD}/data/4
+      device: ${PWD}/data/cluster/4
       o: bind
   data-5:
     driver: local
     driver_opts:
       type: none
-      device: ${PWD}/data/5
+      device: ${PWD}/data/cluster/5
       o: bind
   data-6:
     driver: local
     driver_opts:
       type: none
-      device: ${PWD}/data/6
+      device: ${PWD}/data/cluster/6
       o: bind
